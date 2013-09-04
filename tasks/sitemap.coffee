@@ -44,10 +44,10 @@ module.exports = (grunt) ->
         # the 'overview' part).
         if _.last(parts) == data.overview
           url = _.initial(parts).join '/'
-          id = _.initial(parts).join('-')
+          id = _.last _.initial parts
         else
           url = parts.join '/'
-          id = parts.join '-'
+          id = _.last(parts)
 
         metadata = _.defaults matter,
           id: id
