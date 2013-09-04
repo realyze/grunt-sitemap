@@ -44,11 +44,13 @@ module.exports = (grunt) ->
         # the 'overview' part).
         if _.last(parts) == data.overview
           url = _.initial(parts).join '/'
+          id = _.initial(parts).join('-')
         else
           url = parts.join '/'
+          id = parts.join '-'
 
         metadata = _.defaults matter,
-          id: parts.join('-')
+          id: id
           url: url
           title: _.last(parts)
           templateUrl: "#{data.templateUrlPrefix}#{parts.join('/')}.html"
