@@ -31,12 +31,19 @@
     "grunt-contrib-jshint": "~0.6.0",
     "grunt-contrib-clean": "~0.4.0",
     "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt": "~0.4.1"
+    "grunt": "~0.4.1",
+    "grunt-contrib-coffee": "~0.7.0"
   },
   "peerDependencies": {
     "grunt": "~0.4.1"
   },
   "keywords": [
     "gruntplugin"
-  ]
+  ],
+  "dependencies": {
+    "glob": "~3.2.6",
+    "yaml-front-matter": "~2.1.0",
+    "underscore": "~1.5.1",
+    "cson": "~1.4.4"
+  }
 }
