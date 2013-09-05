@@ -1,7 +1,7 @@
 {
   "name": "grunt-sitemap",
   "description": "Generate a sitemap from jade page front matter.",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "homepage": "https://github.com/realyze/grunt-sitemap",
   "author": {
     "name": "Tomas Brambora",
