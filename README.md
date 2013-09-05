@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # grunt-sitemap
 
 > Generate a sitemap from jade page front matter.

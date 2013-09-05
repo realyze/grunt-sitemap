@@ -12,6 +12,7 @@ glob = require 'glob'
 path = require 'path'
 CSON = require 'cson'
 _ = require 'underscore'
+_s = require 'underscore.string'
 yfm = require 'yaml-front-matter'
 
 module.exports = (grunt) ->
@@ -20,7 +21,8 @@ module.exports = (grunt) ->
 
     done = @async()
 
-    data = @data
+    data = _.defaults @data, {src: '**/*.jade'}
+
     if data.templateUrlPrefix[data.templateUrlPrefix.length-1] isnt '/'
       data.templateUrlPrefix = "#{data.templateUrlPrefix}/"
 
@@ -43,18 +45,18 @@ module.exports = (grunt) ->
         # Account for overview pages (their URLs are special, they don't have
         # the 'overview' part).
         if _.last(parts) == data.overview
-          url = _.initial(parts).join '/'
-          id = _.last _.initial parts
+          cleanedParts = _.initial parts
         else
-          url = parts.join '/'
-          id = _.last(parts)
+          cleanedParts = parts
 
         metadata = _.defaults matter,
-          id: id
-          url: url
-          title: _.last(parts)
+          id: _.last cleanedParts
+          url: cleanedParts.join '/'
+          title: _s.titleize _.last cleanedParts
           templateUrl: "#{data.templateUrlPrefix}#{parts.join('/')}.html"
           controller: data.defaults.controller
+          parent: if cleanedParts.length > 1
+            cleanedParts[cleanedParts.length - 2]
 
         # We don't need the jade contents, we're only interested in the front matter.
         delete metadata.__content
@@ -62,6 +64,12 @@ module.exports = (grunt) ->
         # Return the metadata.
         metadata
       )
+
+      # Check for `id` duplicates. Report error if any found.
+      ids = _.pluck result, 'id'
+      if _.uniq(ids).length isnt ids.length
+        grunt.log.error "duplicate ids detected:", ids.sort()
+        return done false
 
       # Preprocess `tpl` file and copy the result to `dest` file.
       grunt.file.copy data.tpl, data.dest, {

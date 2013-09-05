@@ -24,16 +24,14 @@ module.exports = (grunt) ->
     # Configuration to be run (and then tested).
     sitemap:
       all:
-        src: "**/*.jade"
-        root: "content"
+        # src: "**/*.jade"
+        root: "test/fixtures/content"
         overview: "overview"
         dest: "tmp/sitemap.coffee"
-        tpl: "tmp/sitemap.tpl.coffee"
+        tpl: "test/fixtures/sitemap.coffee.tpl"
         templateUrlPrefix: 'static/src/app/content'
-        modulePrefix: "angular.module('salsitasoft')"
         defaults:
           controller: 'genericController'
-
 
     # Unit tests.
     nodeunit:
