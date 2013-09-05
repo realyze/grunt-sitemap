@@ -26,7 +26,7 @@ module.exports = (grunt) ->
       all:
         # src: "**/*.jade"
         root: "test/fixtures/content"
-        overview: "overview"
+        overview: "index"
         dest: "tmp/sitemap.coffee"
         tpl: "test/fixtures/sitemap.coffee.tpl"
         templateUrlPrefix: 'static/src/app/content'

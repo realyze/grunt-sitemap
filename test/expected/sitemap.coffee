@@ -13,31 +13,42 @@ angular.module('salsitasoft')
 #
 .constant('SITEMAP', [
   title: "fooo"
+  order: 1
   id: "home"
   url: "home"
-  templateUrl: "static/src/app/content/home/overview.html"
+  templateUrl: "static/src/app/content/home/index.html"
   controller: "genericController"
 ,
-  title: "Something special"
-  id: "something"
-  url: "home/something"
-  templateUrl: "static/src/app/content/home/something.html"
+  title: "My webapps overview"
+  order: 2
+  id: "web-apps"
+  url: "web-apps"
+  templateUrl: "static/src/app/content/web-apps/index.html"
   controller: "genericController"
-  parent: "home"
 ,
   id: "something2"
+  order: 1
   url: "home/something2"
   title: "Something2"
   templateUrl: "static/src/app/content/home/something2.html"
   controller: "genericController"
   parent: "home"
 ,
+  title: "Something special"
+  order: 2
+  id: "something"
+  url: "home/something"
+  templateUrl: "static/src/app/content/home/something.html"
+  controller: "genericController"
+  parent: "home"
+,
   id: "level"
   url: "web-apps/level"
   title: "Level"
-  templateUrl: "static/src/app/content/web-apps/level/overview.html"
+  templateUrl: "static/src/app/content/web-apps/level/index.html"
   controller: "genericController"
   parent: "web-apps"
+  order: 0
 ,
   title: "My webapps TEST overview (sublevel)"
   id: "test"
@@ -45,10 +56,5 @@ angular.module('salsitasoft')
   templateUrl: "static/src/app/content/web-apps/level/test.html"
   controller: "genericController"
   parent: "level"
-,
-  title: "My webapps overview"
-  id: "web-apps"
-  url: "web-apps"
-  templateUrl: "static/src/app/content/web-apps/overview.html"
-  controller: "genericController"
+  order: 0
 ])

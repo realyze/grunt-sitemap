@@ -57,6 +57,7 @@ module.exports = (grunt) ->
           controller: data.defaults.controller
           parent: if cleanedParts.length > 1
             cleanedParts[cleanedParts.length - 2]
+          order: 0
 
         # We don't need the jade contents, we're only interested in the front matter.
         delete metadata.__content
@@ -64,6 +65,17 @@ module.exports = (grunt) ->
         # Return the metadata.
         metadata
       )
+
+      # Sort the levels by `order` attribute (but keep them together for better
+      # readability).
+      groups = _.groupBy result, 'parent'
+      result = _.chain(result)
+        .groupBy('parent')
+        .map((group) ->
+          _.sortBy group, (item) -> item.order)
+        .flatten()
+        .value()
+
 
       # Check for `id` duplicates. Report error if any found.
       ids = _.pluck result, 'id'
