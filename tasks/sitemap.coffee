@@ -10,7 +10,6 @@
 fs = require 'fs'
 glob = require 'glob'
 path = require 'path'
-CSON = require 'cson'
 _ = require 'underscore'
 _s = require 'underscore.string'
 yfm = require 'yaml-front-matter'
@@ -87,6 +86,6 @@ module.exports = (grunt) ->
       grunt.file.copy data.tpl, data.dest, {
         process: ( contents ) ->
           grunt.template.process contents,
-            data: sitemap: CSON.stringifySync result
+            data: sitemap: JSON.stringify(result, null, 2)
       }
       done()

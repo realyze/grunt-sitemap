@@ -44,7 +44,6 @@
     "glob": "~3.2.6",
     "yaml-front-matter": "~2.1.0",
     "underscore": "~1.5.1",
-    "cson": "~1.4.4",
     "underscore.string": "~2.3.3"
   }
 }
